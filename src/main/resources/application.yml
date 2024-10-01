@@ -1,0 +1,25 @@
+server:
+  port: 9000
+
+spring:
+  security:
+    oauth2:
+      authorizationserver:
+        issuer: http://localhost:9000
+        client:
+          demo-transaction:
+            registration:
+              client-id: demo-transaction
+              client-secret: "{noop}secret"
+              client-name: demo-transaction
+              client-authentication-methods:
+                - client_secret_basic
+              authorization-grant-types: authorization_code
+              redirect-uris: http://localhost:8080/login/oauth2/code/demo-transaction
+              scopes: articles.read
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
